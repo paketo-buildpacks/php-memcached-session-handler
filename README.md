@@ -1,5 +1,7 @@
-# php-memcached-session-handler
-A Cloud Native Buildpack for configuring a Memcached session handler in PHP apps.
+# Php Memcached Session Handler Cloud Native Buildpack
+A Cloud Native Buildpack for configuring a [Memcached](https://memcached.org/)
+[session handler](https://www.php.net/manual/en/class.sessionhandler.php) in
+PHP apps.
 
 The buildpack generates an `.ini` configuration snippet to allow for connecting
 to an external Memcached server as a session handler. The `servers`, `username`, and `password`
