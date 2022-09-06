@@ -5,7 +5,7 @@ api = "0.7"
   homepage = "https://github.com/paketo-buildpacks/php-memcached-session-handler"
   id = "paketo-buildpacks/php-memcached-session-handler"
   keywords = ["php", "memcached"]
-  name = "Paketo PHP Memcached Session Handler Buildpack"
+  name = "Paketo Buildpack for PHP Memcached Session Handler"
 
   [[buildpack.licenses]]
     type = "Apache-2.0"
