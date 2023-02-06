@@ -1,7 +1,6 @@
 package integration_test
 
 import (
-	gocontext "context"
 	"encoding/json"
 	"os"
 	"path/filepath"
@@ -9,8 +8,6 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/docker/docker/api/types"
-	"github.com/docker/docker/client"
 	"github.com/onsi/gomega/format"
 	"github.com/paketo-buildpacks/occam"
 	"github.com/sclevine/spec"
@@ -36,6 +33,7 @@ var (
 )
 
 func TestIntegration(t *testing.T) {
+	docker := occam.NewDocker()
 	Expect := NewWithT(t).Expect
 
 	format.MaxLength = 0
@@ -88,9 +86,5 @@ func TestIntegration(t *testing.T) {
 	suite("TestReproducibleLayerRebuild", testReproducibleLayerRebuild)
 	suite.Run(t)
 
-	dockerClient, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
-	Expect(err).NotTo(HaveOccurred())
-
-	_, err = dockerClient.ImageRemove(gocontext.Background(), "memcached:latest", types.ImageRemoveOptions{Force: true})
-	Expect(err).NotTo(HaveOccurred())
+	Expect(docker.Image.Remove.WithForce().Execute("memcached:latest")).To(Succeed())
 }
