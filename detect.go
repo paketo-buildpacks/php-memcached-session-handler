@@ -1,8 +1,6 @@
 package phpmemcachedhandler
 
 import (
-	"fmt"
-
 	"github.com/paketo-buildpacks/packit/v2"
 	"github.com/paketo-buildpacks/packit/v2/servicebindings"
 )
@@ -24,7 +22,7 @@ func Detect(bindingResolver DetectBindingResolver) packit.DetectFunc {
 		}
 
 		if len(memcachedBindings) < 1 {
-			return packit.DetectResult{}, packit.Fail.WithMessage(fmt.Sprintf("no service bindings of type `%s` provided", MemcachedBindingType))
+			return packit.DetectResult{}, packit.Fail.WithMessage("no service bindings of type `" + MemcachedBindingType + "` provided")
 		}
 
 		return packit.DetectResult{
